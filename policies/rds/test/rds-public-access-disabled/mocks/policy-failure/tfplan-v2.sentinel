@@ -1,0 +1,95 @@
+planned_values = {
+	"outputs": {},
+	"resources": {
+		"awscc_rds_db_instance.public_access_true": {
+			"address":        "awscc_rds_db_instance.public_access_true",
+			"mode":           "managed",
+			"type":           "awscc_rds_db_instance",
+			"name":           "public_access_true",
+			"provider_name":  "registry.terraform.io/hashicorp/awscc",
+			"schema_version": 0,
+			"values": {
+				"publicly_accessible": true,
+			},
+		},
+		"awscc_rds_db_instance.no_public_access_setting": {
+			"address":        "awscc_rds_db_instance.no_public_access_setting",
+			"mode":           "managed",
+			"type":           "awscc_rds_db_instance",
+			"name":           "no_public_access_setting",
+			"provider_name":  "registry.terraform.io/hashicorp/awscc",
+			"schema_version": 0,
+			"values": {},
+		},
+	},
+}
+
+resource_changes = {
+	"awscc_rds_db_instance.public_access_true": {
+		"address": "awscc_rds_db_instance.public_access_true",
+		"mode":    "managed",
+		"type":    "awscc_rds_db_instance",
+		"name":    "public_access_true",
+		"provider_name": "registry.terraform.io/hashicorp/awscc",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"before": null,
+			"after": {
+				"publicly_accessible": true,
+			},
+			"after_unknown": {},
+		},
+	},
+	"awscc_rds_db_instance.no_public_access_setting": {
+		"address": "awscc_rds_db_instance.no_public_access_setting",
+		"mode":    "managed",
+		"type":    "awscc_rds_db_instance",
+		"name":    "no_public_access_setting",
+		"provider_name": "registry.terraform.io/hashicorp/awscc",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"before": null,
+			"after": {},
+			"after_unknown": {},
+		},
+	},
+}
+
+configuration = {
+	"provider_config": {
+		"awscc": {
+			"name":              "awscc",
+			"full_name":         "registry.terraform.io/hashicorp/awscc",
+			"version_constraint": "~> 0.1",
+		},
+	},
+	"root_module": {
+		"resources": [
+			{
+				"address": "awscc_rds_db_instance.public_access_true",
+				"mode":    "managed",
+				"type":    "awscc_rds_db_instance",
+				"name":    "public_access_true",
+				"provider_config_key": "awscc",
+				"expressions": {
+					"publicly_accessible": {
+						"constant_value": true,
+					},
+				},
+				"schema_version": 0,
+			},
+			{
+				"address": "awscc_rds_db_instance.no_public_access_setting",
+				"mode":    "managed",
+				"type":    "awscc_rds_db_instance",
+				"name":    "no_public_access_setting",
+				"provider_config_key": "awscc",
+				"schema_version": 0,
+			},
+		],
+	},
+}

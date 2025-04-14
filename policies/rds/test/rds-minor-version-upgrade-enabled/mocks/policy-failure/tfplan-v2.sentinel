@@ -1,0 +1,95 @@
+planned_values = {
+	"outputs": {},
+	"resources": {
+		"awscc_rds_db_instance.auto_minor_version_upgrade_false": {
+			"address":        "awscc_rds_db_instance.auto_minor_version_upgrade_false",
+			"mode":           "managed",
+			"type":           "awscc_rds_db_instance",
+			"name":           "auto_minor_version_upgrade_false",
+			"provider_name":  "registry.terraform.io/hashicorp/awscc",
+			"schema_version": 0,
+			"values": {
+				"auto_minor_version_upgrade": false,
+			},
+		},
+		"awscc_rds_db_instance.no_auto_minor_version_upgrade": {
+			"address":        "awscc_rds_db_instance.no_auto_minor_version_upgrade",
+			"mode":           "managed",
+			"type":           "awscc_rds_db_instance",
+			"name":           "no_auto_minor_version_upgrade",
+			"provider_name":  "registry.terraform.io/hashicorp/awscc",
+			"schema_version": 0,
+			"values": {},
+		},
+	},
+}
+
+resource_changes = {
+	"awscc_rds_db_instance.auto_minor_version_upgrade_false": {
+		"address": "awscc_rds_db_instance.auto_minor_version_upgrade_false",
+		"mode":    "managed",
+		"type":    "awscc_rds_db_instance",
+		"name":    "auto_minor_version_upgrade_false",
+		"provider_name": "registry.terraform.io/hashicorp/awscc",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"before": null,
+			"after": {
+				"auto_minor_version_upgrade": false,
+			},
+			"after_unknown": {},
+		},
+	},
+	"awscc_rds_db_instance.no_auto_minor_version_upgrade": {
+		"address": "awscc_rds_db_instance.no_auto_minor_version_upgrade",
+		"mode":    "managed",
+		"type":    "awscc_rds_db_instance",
+		"name":    "no_auto_minor_version_upgrade",
+		"provider_name": "registry.terraform.io/hashicorp/awscc",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"before": null,
+			"after": {},
+			"after_unknown": {},
+		},
+	},
+}
+
+configuration = {
+	"provider_config": {
+		"awscc": {
+			"name":              "awscc",
+			"full_name":         "registry.terraform.io/hashicorp/awscc",
+			"version_constraint": "~> 0.1",
+		},
+	},
+	"root_module": {
+		"resources": [
+			{
+				"address": "awscc_rds_db_instance.auto_minor_version_upgrade_false",
+				"mode":    "managed",
+				"type":    "awscc_rds_db_instance",
+				"name":    "auto_minor_version_upgrade_false",
+				"provider_config_key": "awscc",
+				"expressions": {
+					"auto_minor_version_upgrade": {
+						"constant_value": false,
+					},
+				},
+				"schema_version": 0,
+			},
+			{
+				"address": "awscc_rds_db_instance.no_auto_minor_version_upgrade",
+				"mode":    "managed",
+				"type":    "awscc_rds_db_instance",
+				"name":    "no_auto_minor_version_upgrade",
+				"provider_config_key": "awscc",
+				"schema_version": 0,
+			},
+		],
+	},
+}
