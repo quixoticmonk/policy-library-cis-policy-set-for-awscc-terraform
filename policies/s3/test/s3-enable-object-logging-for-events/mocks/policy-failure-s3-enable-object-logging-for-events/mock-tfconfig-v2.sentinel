@@ -1,0 +1,61 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: BUSL-1.1
+
+resources = {
+	"awscc_s3_bucket.example": {
+		"address": "awscc_s3_bucket.example",
+		"config": {
+			"bucket": {
+				"constant_value": "example-bucket",
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "example",
+		"provider_config_key": "awscc",
+		"provisioners":        [],
+		"type":                "awscc_s3_bucket",
+	},
+	"awscc_cloudtrail_trail.example": {
+		"address": "awscc_cloudtrail_trail.example",
+		"config": {
+			"event_selectors": {
+				"constant_value": [
+					{
+						"data_resources": [
+							{
+								"type": "AWS::S3::Object",
+								"values": [
+									"arn:aws:s3:::different-bucket/",
+								],
+							},
+						],
+						"include_management_events": true,
+						"read_write_type": "ReadOnly",
+					},
+				],
+			},
+			"is_logging": {
+				"constant_value": true,
+			},
+			"s3_bucket_name": {
+				"constant_value": "example-bucket-logs",
+			},
+			"trail_name": {
+				"constant_value": "example-trail",
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "example",
+		"provider_config_key": "awscc",
+		"provisioners":        [],
+		"type":                "awscc_cloudtrail_trail",
+	},
+}

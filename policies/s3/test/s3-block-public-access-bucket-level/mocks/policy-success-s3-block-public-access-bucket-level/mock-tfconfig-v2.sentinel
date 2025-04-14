@@ -1,0 +1,30 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: BUSL-1.1
+
+resources = {
+	"awscc_s3_bucket.example": {
+		"address": "awscc_s3_bucket.example",
+		"config": {
+			"bucket": {
+				"constant_value": "example-bucket",
+			},
+			"public_access_block_configuration": {
+				"constant_value": {
+					"block_public_acls": true,
+					"block_public_policy": true,
+					"ignore_public_acls": true,
+					"restrict_public_buckets": true,
+				},
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "example",
+		"provider_config_key": "awscc",
+		"provisioners":        [],
+		"type":                "awscc_s3_bucket",
+	},
+}

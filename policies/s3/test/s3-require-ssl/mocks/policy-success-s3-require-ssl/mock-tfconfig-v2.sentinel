@@ -1,0 +1,64 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: BUSL-1.1
+
+resources = {
+	"awscc_s3_bucket.example": {
+		"address": "awscc_s3_bucket.example",
+		"config": {
+			"bucket": {
+				"constant_value": "example-bucket",
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "example",
+		"provider_config_key": "awscc",
+		"provisioners":        [],
+		"type":                "awscc_s3_bucket",
+	},
+	"awscc_s3_bucket_policy.example": {
+		"address": "awscc_s3_bucket_policy.example",
+		"config": {
+			"bucket": {
+				"references": [
+					"awscc_s3_bucket.example.id",
+					"awscc_s3_bucket.example",
+				],
+			},
+			"policy_document": {
+				"constant_value": {
+					"Statement": [
+						{
+							"Action": "s3:*",
+							"Condition": {
+								"Bool": {
+									"aws:SecureTransport": "false",
+								},
+							},
+							"Effect":    "Deny",
+							"Principal": "*",
+							"Resource": [
+								"arn:aws:s3:::example-bucket",
+								"arn:aws:s3:::example-bucket/*",
+							],
+							"Sid": "AllowSSLRequestsOnly",
+						},
+					],
+					"Version": "2012-10-17",
+				},
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "example",
+		"provider_config_key": "awscc",
+		"provisioners":        [],
+		"type":                "awscc_s3_bucket_policy",
+	},
+}
