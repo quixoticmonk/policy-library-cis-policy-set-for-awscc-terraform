@@ -1,0 +1,66 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: BUSL-1.1
+
+terraform_version = "1.7.4"
+
+planned_values = {
+	"outputs": {},
+	"resources": {
+		"awscc_kms_key.key": {
+			"address":        "awscc_kms_key.key",
+			"depends_on":     [],
+			"deposed_key":    "",
+			"index":          null,
+			"mode":           "managed",
+			"module_address": "",
+			"name":           "key",
+			"provider_name":  "registry.terraform.io/hashicorp/awscc",
+			"tainted":        false,
+			"type":           "awscc_kms_key",
+			"values": {
+				"bypass_policy_lockout_safety_check": false,
+				"customer_master_key_spec":           "SYMMETRIC_DEFAULT",
+				"description":                        null,
+				"enable_key_rotation":                false,
+				"enabled":                            false,
+				"key_policy":                         null,
+				"key_usage":                          "ENCRYPT_DECRYPT",
+				"multi_region":                       null,
+				"pending_window_in_days":             null,
+				"tags":                               null,
+			},
+		},
+		"module.kms.awscc_kms_key.key": {
+			"address":        "module.kms.awscc_kms_key.key",
+			"depends_on":     [],
+			"deposed_key":    "",
+			"index":          null,
+			"mode":           "managed",
+			"module_address": "module.kms",
+			"name":           "key",
+			"provider_name":  "registry.terraform.io/hashicorp/awscc",
+			"tainted":        false,
+			"type":           "awscc_kms_key",
+			"values": {
+				"bypass_policy_lockout_safety_check": false,
+				"customer_master_key_spec":           "SYMMETRIC_DEFAULT",
+				"description":                        null,
+				"enable_key_rotation":                true,
+				"enabled":                            true,
+				"key_policy":                         null,
+				"key_usage":                          "ENCRYPT_DECRYPT",
+				"multi_region":                       null,
+				"pending_window_in_days":             null,
+				"tags":                               null,
+			},
+		},
+	},
+}
+
+variables = {}
+
+resource_changes = {}
+
+output_changes = {}
+
+raw = {}
