@@ -27,7 +27,7 @@ planned_values = {
 				"key_usage":                          "ENCRYPT_DECRYPT",
 				"multi_region":                       null,
 				"pending_window_in_days":             null,
-				"tags":                               null,
+				"tags": null,
 			},
 		},
 		"module.kms.awscc_kms_key.key": {
@@ -51,7 +51,7 @@ planned_values = {
 				"key_usage":                          "ENCRYPT_DECRYPT",
 				"multi_region":                       null,
 				"pending_window_in_days":             null,
-				"tags":                               null,
+				"tags": null,
 			},
 		},
 	},

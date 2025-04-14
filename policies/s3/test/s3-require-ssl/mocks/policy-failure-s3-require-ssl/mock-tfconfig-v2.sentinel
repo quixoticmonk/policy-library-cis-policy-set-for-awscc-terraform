@@ -32,7 +32,7 @@ resources = {
 				"constant_value": {
 					"Statement": [
 						{
-							"Action": "s3:*",
+							"Action":    "s3:*",
 							"Effect":    "Allow",
 							"Principal": "*",
 							"Resource": [

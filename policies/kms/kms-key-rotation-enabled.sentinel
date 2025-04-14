@@ -14,11 +14,11 @@ import "collection/maps" as maps
 # Constants
 
 const = {
-	"policy_name":              "kms-key-rotation-enabled",
-	"resource_awscc_kms_key":   "awscc_kms_key",
-	"enable_key_rotation":      "enable_key_rotation",
-	"enabled":                  "enabled",
-	"message":                  "Attribute 'enable_key_rotation' must be enabled for 'awscc_kms_key' resources. Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/kms-controls.html#kms-4 for more details.",
+	"policy_name":            "kms-key-rotation-enabled",
+	"resource_awscc_kms_key": "awscc_kms_key",
+	"enable_key_rotation":    "enable_key_rotation",
+	"enabled":                "enabled",
+	"message":                "Attribute 'enable_key_rotation' must be enabled for 'awscc_kms_key' resources. Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/kms-controls.html#kms-4 for more details.",
 }
 
 # Variables

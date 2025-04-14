@@ -15,10 +15,10 @@ import "strings"
 # Constants
 
 const = {
-	"policy_name":                "s3-require-ssl",
-	"message":                    "S3 general purpose buckets should require ssl for all requests. Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards-fsbp-controls.html#fsbp-s3-5 for more details.",
-	"resource_s3_bucket":         "awscc_s3_bucket",
-	"resource_s3_bucket_policy":  "awscc_s3_bucket_policy",
+	"policy_name":               "s3-require-ssl",
+	"message":                   "S3 general purpose buckets should require ssl for all requests. Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards-fsbp-controls.html#fsbp-s3-5 for more details.",
+	"resource_s3_bucket":        "awscc_s3_bucket",
+	"resource_s3_bucket_policy": "awscc_s3_bucket_policy",
 }
 
 # Functions
@@ -43,7 +43,7 @@ is_ssl_required = func(policy_document) {
 		if effect is "Deny" and action is "s3:*" and principal is "*" {
 			bool_condition = maps.get(condition, "Bool", {})
 			secure_transport = maps.get(bool_condition, "aws:SecureTransport", "")
-			
+
 			if secure_transport is "false" {
 				return true
 			}
@@ -92,7 +92,7 @@ violations = []
 for s3_buckets as _, bucket {
 	bucket_addr = bucket.address
 	policy_document = maps.get(bucket_policies, bucket_addr, null)
-	
+
 	if policy_document is null {
 		append(violations, bucket)
 	} else {
@@ -107,7 +107,7 @@ if length(s3_buckets) == 1 and length(s3_bucket_policies) == 1 {
 	bucket = s3_buckets[0]
 	policy = s3_bucket_policies[0]
 	policy_document = maps.get(policy, "config.policy_document.constant_value", {})
-	
+
 	if is_ssl_required(policy_document) {
 		violations = []
 	}

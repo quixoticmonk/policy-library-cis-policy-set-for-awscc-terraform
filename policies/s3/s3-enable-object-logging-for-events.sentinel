@@ -19,10 +19,10 @@ param event_type default "Read"
 # Constants
 
 const = {
-	"policy_name":                "s3-enable-object-logging-for-events",
-	"message":                    "Ensure that Object-level logging for " + event_type + " events is enabled for S3 buckets. Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards-fsbp-controls.html#fsbp-s3-9 for more details.",
-	"resource_s3_bucket":         "awscc_s3_bucket",
-	"resource_cloudtrail_trail":  "awscc_cloudtrail_trail",
+	"policy_name":               "s3-enable-object-logging-for-events",
+	"message":                   "Ensure that Object-level logging for " + event_type + " events is enabled for S3 buckets. Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards-fsbp-controls.html#fsbp-s3-9 for more details.",
+	"resource_s3_bucket":        "awscc_s3_bucket",
+	"resource_cloudtrail_trail": "awscc_cloudtrail_trail",
 }
 
 # Functions
@@ -34,16 +34,16 @@ has_object_logging = func(bucket_name, trails, event_type) {
 		if !is_logging {
 			continue
 		}
-		
+
 		event_selectors = maps.get(trail, "config.event_selectors.constant_value", [])
 		for event_selectors as _, selector {
 			read_write_type = maps.get(selector, "read_write_type", "")
-			
+
 			# Check if the read_write_type matches the event_type parameter
 			if (event_type is "Read" and read_write_type is "ReadOnly") or
-			   (event_type is "Write" and read_write_type is "WriteOnly") or
-			   read_write_type is "All" {
-				
+				(event_type is "Write" and read_write_type is "WriteOnly") or
+				read_write_type is "All" {
+
 				data_resources = maps.get(selector, "data_resources", [])
 				for data_resources as _, resource {
 					resource_type = maps.get(resource, "type", "")
@@ -59,7 +59,7 @@ has_object_logging = func(bucket_name, trails, event_type) {
 			}
 		}
 	}
-	
+
 	return false
 }
 
@@ -78,7 +78,7 @@ for s3_buckets as _, bucket {
 		append(violations, bucket)
 		continue
 	}
-	
+
 	if !has_object_logging(bucket_name, cloudtrail_trails, event_type) {
 		append(violations, bucket)
 	}

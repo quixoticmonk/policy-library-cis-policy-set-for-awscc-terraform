@@ -49,7 +49,7 @@ resource_address_without_module_address = func(res) {
 # Check if a VPC has a valid flow log
 has_valid_flow_log = func(vpc, flow_log_resources) {
 	vpc_address = resource_address_without_module_address(vpc)
-	
+
 	for flow_log_resources as _, flow_log {
 		traffic_type_attr_value = maps.get(flow_log, const.config + "." + const.traffic_type, "")
 		if not (traffic_type_attr_value is defined and
@@ -61,9 +61,9 @@ has_valid_flow_log = func(vpc, flow_log_resources) {
 		if flow_log_config is defined and
 			flow_log_config[const.vpc_id] is defined and
 			flow_log_config[const.vpc_id][const.references] is defined {
-			
+
 			vpc_ref = flow_log_config[const.vpc_id][const.references][0]
-			
+
 			# Extract the base resource name without indices or attributes
 			if strings.has_prefix(vpc_ref, "awscc_ec2_vpc.") {
 				vpc_name = strings.split(vpc_ref, ".")[1]
@@ -73,14 +73,14 @@ has_valid_flow_log = func(vpc, flow_log_resources) {
 				if strings.has_suffix(vpc_name, ".id") {
 					vpc_name = strings.trim_suffix(vpc_name, ".id")
 				}
-				
+
 				if vpc_address == "awscc_ec2_vpc." + vpc_name {
 					return true
 				}
 			}
 		}
 	}
-	
+
 	return false
 }
 
