@@ -1,0 +1,103 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: BUSL-1.1
+
+planned_values = {
+	"outputs": {},
+	"resources": {
+		"awscc_ec2_volume.ebs": {
+			"address":        "awscc_ec2_volume.ebs",
+			"depends_on":     [],
+			"deposed_key":    "",
+			"index":          null,
+			"mode":           "managed",
+			"module_address": "",
+			"name":           "ebs",
+			"provider_name":  "registry.terraform.io/hashicorp/awscc",
+			"tainted":        false,
+			"type":           "awscc_ec2_volume",
+			"values": {
+				"availability_zone": "us-west-2a",
+				"encrypted":         true,
+				"size":              40,
+				"tags": [
+					{
+						"key":   "Name",
+						"value": "encrypted-volume",
+					},
+				],
+			},
+		},
+	},
+}
+
+resource_changes = {
+	"awscc_ec2_volume.ebs": {
+		"address": "awscc_ec2_volume.ebs",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"after": {
+				"availability_zone": "us-west-2a",
+				"encrypted":         true,
+				"size":              40,
+				"tags": [
+					{
+						"key":   "Name",
+						"value": "encrypted-volume",
+					},
+				],
+			},
+			"after_unknown": {},
+			"before":        null,
+		},
+		"deposed":        "",
+		"index":          null,
+		"mode":           "managed",
+		"module_address": "",
+		"name":           "ebs",
+		"provider_name":  "registry.terraform.io/hashicorp/awscc",
+		"type":           "awscc_ec2_volume",
+	},
+}
+
+configuration = {
+	"provider_config": {
+		"awscc": {
+			"name":              "awscc",
+			"full_name":         "registry.terraform.io/hashicorp/awscc",
+			"version_constraint": "~> 0.1",
+		},
+	},
+	"root_module": {
+		"resources": [
+			{
+				"address": "awscc_ec2_volume.ebs",
+				"mode":    "managed",
+				"type":    "awscc_ec2_volume",
+				"name":    "ebs",
+				"provider_config_key": "awscc",
+				"expressions": {
+					"availability_zone": {
+						"constant_value": "us-west-2a",
+					},
+					"encrypted": {
+						"constant_value": true,
+					},
+					"size": {
+						"constant_value": 40,
+					},
+					"tags": {
+						"constant_value": [
+							{
+								"key":   "Name",
+								"value": "encrypted-volume",
+							},
+						],
+					},
+				},
+				"schema_version": 0,
+			},
+		],
+	},
+}
