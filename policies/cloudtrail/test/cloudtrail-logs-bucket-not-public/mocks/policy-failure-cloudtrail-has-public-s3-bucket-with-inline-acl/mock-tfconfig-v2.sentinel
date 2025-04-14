@@ -1,0 +1,42 @@
+resources = {
+	"awscc_cloudtrail_trail.trail": {
+		"address": "awscc_cloudtrail_trail.trail",
+		"config": {
+			"s3_bucket_name": {
+				"references": [
+					"awscc_s3_bucket.bucket.id",
+					"awscc_s3_bucket.bucket",
+				],
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "trail",
+		"provider_config_key": "awscc",
+		"provisioners":        [],
+		"type":                "awscc_cloudtrail_trail",
+	},
+	"awscc_s3_bucket.bucket": {
+		"address": "awscc_s3_bucket.bucket",
+		"config": {
+			"acl": {
+				"constant_value": "public-read",
+			},
+			"bucket": {
+				"constant_value": "my-bucket",
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "bucket",
+		"provider_config_key": "awscc",
+		"provisioners":        [],
+		"type":                "awscc_s3_bucket",
+	},
+}

@@ -1,0 +1,85 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: BUSL-1.1
+
+planned_values = {
+	"outputs": {},
+	"resources": {
+		"awscc_cloudtrail_trail.cloudtrail-example": {
+			"address":        "awscc_cloudtrail_trail.cloudtrail-example",
+			"depends_on":     [],
+			"deposed_key":    "",
+			"index":          null,
+			"mode":           "managed",
+			"module_address": "",
+			"name":           "cloudtrail-example",
+			"provider_name":  "registry.terraform.io/hashicorp/awscc",
+			"tainted":        false,
+			"type":           "awscc_cloudtrail_trail",
+			"values": {
+				"enable_log_file_validation": false,
+				"name":                       "example-cloudtrail",
+				"s3_bucket_name":             "example-bucket",
+			},
+		},
+	},
+}
+
+resource_changes = {
+	"awscc_cloudtrail_trail.cloudtrail-example": {
+		"address": "awscc_cloudtrail_trail.cloudtrail-example",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"after": {
+				"enable_log_file_validation": false,
+				"name":                       "example-cloudtrail",
+				"s3_bucket_name":             "example-bucket",
+			},
+			"after_unknown": {
+				"arn":                        true,
+				"cloud_watch_logs_group_arn": true,
+				"cloud_watch_logs_role_arn":  true,
+				"home_region":                true,
+				"id":                         true,
+				"include_global_service_events": true,
+				"is_multi_region_trail":      true,
+				"is_organization_trail":      true,
+				"kms_key_id":                 true,
+				"s3_key_prefix":              true,
+				"sns_topic_name":             true,
+				"tags":                       true,
+				"trail_arn":                  true,
+			},
+			"before": null,
+		},
+		"deposed":        "",
+		"index":          null,
+		"mode":           "managed",
+		"module_address": "",
+		"name":           "cloudtrail-example",
+		"provider_name":  "registry.terraform.io/hashicorp/awscc",
+		"type":           "awscc_cloudtrail_trail",
+	},
+}
+
+configuration = {
+	"provider_config": {
+		"awscc": {
+			"name":               "awscc",
+			"version_constraint": "~> 0.1",
+		},
+	},
+	"root_module": {
+		"resources": [
+			{
+				"address": "awscc_cloudtrail_trail.cloudtrail-example",
+				"mode":    "managed",
+				"name":    "cloudtrail-example",
+				"provider_config_key": "awscc",
+				"schema_version":      0,
+				"type":                "awscc_cloudtrail_trail",
+			},
+		],
+	},
+}

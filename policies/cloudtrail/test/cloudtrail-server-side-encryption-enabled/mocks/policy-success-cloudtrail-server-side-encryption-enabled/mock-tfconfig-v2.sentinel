@@ -1,0 +1,28 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: BUSL-1.1
+
+resources = {
+	"awscc_cloudtrail_trail.cloudtrail-example": {
+		"address": "awscc_cloudtrail_trail.cloudtrail-example",
+		"config": {
+			"kms_key_id": {
+				"constant_value": "arn:aws:kms:us-east-1:123456789012:key/abcd1234-a123-456a-a12b-a123b4cd56ef",
+			},
+			"name": {
+				"constant_value": "example-cloudtrail",
+			},
+			"s3_bucket_name": {
+				"constant_value": "example-bucket",
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "cloudtrail-example",
+		"provider_config_key": "awscc",
+		"provisioners":        [],
+		"type":                "awscc_cloudtrail_trail",
+	},
+}

@@ -1,0 +1,71 @@
+resources = {
+	"awscc_cloudtrail_trail.trail": {
+		"address": "awscc_cloudtrail_trail.trail",
+		"config": {
+			"s3_bucket_name": {
+				"references": [
+					"awscc_s3_bucket.bucket.id",
+					"awscc_s3_bucket.bucket",
+				],
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "trail",
+		"provider_config_key": "awscc",
+		"provisioners":        [],
+		"type":                "awscc_cloudtrail_trail",
+	},
+	"awscc_s3_bucket.bucket": {
+		"address": "awscc_s3_bucket.bucket",
+		"config": {
+			"bucket": {
+				"constant_value": "my-bucket",
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "bucket",
+		"provider_config_key": "awscc",
+		"provisioners":        [],
+		"type":                "awscc_s3_bucket",
+	},
+	"awscc_s3_bucket_public_access_block.bucket": {
+		"address": "awscc_s3_bucket_public_access_block.bucket",
+		"config": {
+			"block_public_acls": {
+				"constant_value": true,
+			},
+			"block_public_policy": {
+				"constant_value": true,
+			},
+			"bucket": {
+				"references": [
+					"awscc_s3_bucket.bucket.id",
+					"awscc_s3_bucket.bucket",
+				],
+			},
+			"ignore_public_acls": {
+				"constant_value": true,
+			},
+			"restrict_public_buckets": {
+				"constant_value": true,
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "bucket",
+		"provider_config_key": "awscc",
+		"provisioners":        [],
+		"type":                "awscc_s3_bucket_public_access_block",
+	},
+}
