@@ -14,10 +14,10 @@ import "collection/maps" as maps
 # Constants
 
 const = {
-	"policy_name":                   "rds-encryption-at-rest-enabled",
-	"message":                       "Attribute 'storage_encrypted' must be set to true for 'awscc_rds_db_instance' resources. Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/rds-controls.html#rds-3 for more details.",
+	"policy_name":                    "rds-encryption-at-rest-enabled",
+	"message":                        "Attribute 'storage_encrypted' must be set to true for 'awscc_rds_db_instance' resources. Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/rds-controls.html#rds-3 for more details.",
 	"resource_awscc_rds_db_instance": "awscc_rds_db_instance",
-	"storage_encrypted":             "storage_encrypted",
+	"storage_encrypted":              "storage_encrypted",
 }
 
 # Variables

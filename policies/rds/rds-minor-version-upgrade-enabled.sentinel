@@ -14,10 +14,10 @@ import "collection/maps" as maps
 # Constants
 
 const = {
-	"policy_name":                     "rds-minor-version-upgrade-enabled",
-	"message":                         "Attribute 'auto_minor_version_upgrade' must be set to true for 'awscc_rds_db_instance' resources. Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/rds-controls.html#rds-13 for more details.",
-	"resource_awscc_rds_db_instance":  "awscc_rds_db_instance",
-	"auto_minor_version_upgrade":      "auto_minor_version_upgrade",
+	"policy_name":                    "rds-minor-version-upgrade-enabled",
+	"message":                        "Attribute 'auto_minor_version_upgrade' must be set to true for 'awscc_rds_db_instance' resources. Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/rds-controls.html#rds-13 for more details.",
+	"resource_awscc_rds_db_instance": "awscc_rds_db_instance",
+	"auto_minor_version_upgrade":     "auto_minor_version_upgrade",
 }
 
 # Variables

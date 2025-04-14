@@ -17,10 +17,10 @@ planned_values = {
 
 resource_changes = {
 	"awscc_rds_db_instance.encrypted_true": {
-		"address": "awscc_rds_db_instance.encrypted_true",
-		"mode":    "managed",
-		"type":    "awscc_rds_db_instance",
-		"name":    "encrypted_true",
+		"address":       "awscc_rds_db_instance.encrypted_true",
+		"mode":          "managed",
+		"type":          "awscc_rds_db_instance",
+		"name":          "encrypted_true",
 		"provider_name": "registry.terraform.io/hashicorp/awscc",
 		"change": {
 			"actions": [
@@ -38,18 +38,18 @@ resource_changes = {
 configuration = {
 	"provider_config": {
 		"awscc": {
-			"name":              "awscc",
-			"full_name":         "registry.terraform.io/hashicorp/awscc",
+			"name":               "awscc",
+			"full_name":          "registry.terraform.io/hashicorp/awscc",
 			"version_constraint": "~> 0.1",
 		},
 	},
 	"root_module": {
 		"resources": [
 			{
-				"address": "awscc_rds_db_instance.encrypted_true",
-				"mode":    "managed",
-				"type":    "awscc_rds_db_instance",
-				"name":    "encrypted_true",
+				"address":             "awscc_rds_db_instance.encrypted_true",
+				"mode":                "managed",
+				"type":                "awscc_rds_db_instance",
+				"name":                "encrypted_true",
 				"provider_config_key": "awscc",
 				"expressions": {
 					"auto_minor_version_upgrade": {

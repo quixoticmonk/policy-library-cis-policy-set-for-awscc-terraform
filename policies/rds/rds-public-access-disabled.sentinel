@@ -14,10 +14,10 @@ import "collection/maps" as maps
 # Constants
 
 const = {
-	"policy_name":                   "rds-public-access-disabled",
-	"message":                       "Attribute 'publicly_accessible' must be set to false for 'awscc_rds_db_instance' resources. Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/rds-controls.html#rds-2 for more details.",
+	"policy_name":                    "rds-public-access-disabled",
+	"message":                        "Attribute 'publicly_accessible' must be set to false for 'awscc_rds_db_instance' resources. Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/rds-controls.html#rds-2 for more details.",
 	"resource_awscc_rds_db_instance": "awscc_rds_db_instance",
-	"publicly_accessible":           "publicly_accessible",
+	"publicly_accessible":            "publicly_accessible",
 }
 
 # Variables
