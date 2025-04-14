@@ -26,7 +26,7 @@ For more details on how to work with these policies and to understand the Sentin
 
 ### EC2
 - AWS EBS volumes are encrypted ([code](https://github.com/hashicorp/policy-library-CIS-Policy-Set-for-AWS-Terraform/blob/main/policies-awscc/ec2/ec2-ebs-encryption-enabled.sentinel))
-- Ensure that EC2 Metadata Service only allows IMDSv2 ([code](https://github.com/hashicorp/policy-library-CIS-Policy-Set-for-AWS-Terraform/blob/main/policies-awscc/ec2/ec2-metadata-imdsv2-required.sentinel))
+
 
 ### VPC
 - Ensure VPC flow logging is enabled in all VPCs ([code](https://github.com/hashicorp/policy-library-CIS-Policy-Set-for-AWS-Terraform/blob/main/policies-awscc/vpc/vpc-flow-logging-enabled.sentinel))
