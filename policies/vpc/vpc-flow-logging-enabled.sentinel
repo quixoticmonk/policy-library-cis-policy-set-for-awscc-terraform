@@ -1,0 +1,125 @@
+# This policy requires resources of type `awscc_ec2_vpc` to have flow logs enabled.
+
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: BUSL-1.1
+
+# Imports
+
+import "tfconfig/v2" as tfconfig
+import "tfresources" as tf
+import "report" as report
+import "strings"
+import "collection" as collection
+import "collection/maps" as maps
+
+# Constants
+
+const = {
+	"policy_name":                 "vpc-flow-logging-enabled",
+	"message":                     "VPC resources `awscc_ec2_vpc` must have flow logging. Refer to https://docs.aws.amazon.com/securityhub/latest/userguide/ec2-controls.html#ec2-6 for more details.",
+	"address":                     "address",
+	"resource_awscc_ec2_flow_log": "awscc_ec2_flow_log",
+	"resource_awscc_ec2_vpc":      "awscc_ec2_vpc",
+	"config":                      "config",
+	"constant_value":              "constant_value",
+	"traffic_type":                "traffic_type",
+	"traffic_type_reject":         "REJECT",
+	"references":                  "references",
+	"vpc_id":                      "vpc_id",
+	"module_prefix":               "module.",
+	"module_address":              "module_address",
+}
+
+# Functions
+
+# Removes module address prefix from a resource
+# and returns back the localized address for a module.
+resource_address_without_module_address = func(res) {
+	resource_addr = res[const.address]
+
+	# Check for root module
+	if not strings.has_prefix(resource_addr, const.module_prefix) {
+		return resource_addr
+	}
+
+	module_addr_prefix = res[const.module_address] + "."
+	return strings.trim_prefix(resource_addr, module_addr_prefix)
+}
+
+# Check if a VPC has a valid flow log
+has_valid_flow_log = func(vpc, flow_log_resources) {
+	vpc_address = resource_address_without_module_address(vpc)
+	
+	for flow_log_resources as _, flow_log {
+		traffic_type_attr_value = maps.get(flow_log, const.config + "." + const.traffic_type, "")
+		if not (traffic_type_attr_value is defined and
+			maps.get(traffic_type_attr_value, const.constant_value, "") is const.traffic_type_reject) {
+			continue
+		}
+
+		flow_log_config = flow_log[const.config]
+		if flow_log_config is defined and
+			flow_log_config[const.vpc_id] is defined and
+			flow_log_config[const.vpc_id][const.references] is defined {
+			
+			vpc_ref = flow_log_config[const.vpc_id][const.references][0]
+			
+			# Extract the base resource name without indices or attributes
+			if strings.has_prefix(vpc_ref, "awscc_ec2_vpc.") {
+				vpc_name = strings.split(vpc_ref, ".")[1]
+				if strings.has_suffix(vpc_name, "[0]") {
+					vpc_name = strings.trim_suffix(vpc_name, "[0]")
+				}
+				if strings.has_suffix(vpc_name, ".id") {
+					vpc_name = strings.trim_suffix(vpc_name, ".id")
+				}
+				
+				if vpc_address == "awscc_ec2_vpc." + vpc_name {
+					return true
+				}
+			}
+		}
+	}
+	
+	return false
+}
+
+# Variables
+
+config_resources = tf.config(tfconfig.resources)
+
+# Get all flow log resources
+flow_log_resources = config_resources.type(const.resource_awscc_ec2_flow_log).resources
+
+# Get all VPC resources
+vpc_resources = config_resources.type(const.resource_awscc_ec2_vpc).resources
+
+# Find violations - VPCs without valid flow logs
+violations = []
+
+for vpc_resources as _, vpc {
+	if not has_valid_flow_log(vpc, flow_log_resources) {
+		append(violations, vpc)
+	}
+}
+
+summary = {
+	"policy_name": const.policy_name,
+	"violations": map violations as _, v {
+		{
+			"address":        v.address,
+			"module_address": v.module_address,
+			"message":        const.message,
+		}
+	},
+}
+
+# Outputs
+
+print(report.generate_policy_report(summary))
+
+# Rules
+
+main = rule {
+	violations is empty
+}

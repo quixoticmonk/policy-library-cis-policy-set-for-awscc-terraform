@@ -1,0 +1,87 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: BUSL-1.1
+
+resources = {
+	"data.aws_availability_zones.current": {
+		"address":             "data.aws_availability_zones.current",
+		"config":              {},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "data",
+		"module_address":      "",
+		"name":                "current",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_availability_zones",
+	},
+	"module.vpc.awscc_ec2_vpc.main": {
+		"address": "module.vpc.awscc_ec2_vpc.main",
+		"config": {
+			"cidr_block": {
+				"references": [
+					"var.cidr_block",
+				],
+			},
+			"enable_dns_hostnames": {
+				"references": [
+					"var.vpc_enable_dns_hostnames",
+				],
+			},
+			"enable_dns_support": {
+				"references": [
+					"var.vpc_enable_dns_support",
+				],
+			},
+			"instance_tenancy": {
+				"references": [
+					"var.vpc_instance_tenancy",
+				],
+			},
+			"tags": {
+				"references": [
+					"var.name",
+					"module.tags.tags_aws",
+					"module.tags",
+				],
+			},
+		},
+		"count": {
+			"references": [
+				"local.create_vpc",
+			],
+		},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "module.vpc",
+		"name":                "main",
+		"provider_config_key": "module.vpc:awscc",
+		"provisioners":        [],
+		"type":                "awscc_ec2_vpc",
+	},
+	"module.vpc.awscc_ec2_flow_log.main": {
+		"address": "module.vpc.awscc_ec2_flow_log.main",
+		"config": {
+			"traffic_type": {
+				"constant_value": "ALL",
+			},
+			"vpc_id": {
+				"references": [
+					"awscc_ec2_vpc.main[0].id",
+					"awscc_ec2_vpc.main[0]",
+					"awscc_ec2_vpc.main",
+				],
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "module.vpc",
+		"name":                "main",
+		"provider_config_key": "module.vpc:awscc",
+		"provisioners":        [],
+		"type":                "awscc_ec2_flow_log",
+	},
+}
