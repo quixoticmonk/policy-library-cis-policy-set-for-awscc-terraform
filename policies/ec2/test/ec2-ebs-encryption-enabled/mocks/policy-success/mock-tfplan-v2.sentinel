@@ -64,18 +64,18 @@ resource_changes = {
 configuration = {
 	"provider_config": {
 		"awscc": {
-			"name":              "awscc",
-			"full_name":         "registry.terraform.io/hashicorp/awscc",
+			"name":               "awscc",
+			"full_name":          "registry.terraform.io/hashicorp/awscc",
 			"version_constraint": "~> 0.1",
 		},
 	},
 	"root_module": {
 		"resources": [
 			{
-				"address": "awscc_ec2_volume.ebs",
-				"mode":    "managed",
-				"type":    "awscc_ec2_volume",
-				"name":    "ebs",
+				"address":             "awscc_ec2_volume.ebs",
+				"mode":                "managed",
+				"type":                "awscc_ec2_volume",
+				"name":                "ebs",
 				"provider_config_key": "awscc",
 				"expressions": {
 					"availability_zone": {

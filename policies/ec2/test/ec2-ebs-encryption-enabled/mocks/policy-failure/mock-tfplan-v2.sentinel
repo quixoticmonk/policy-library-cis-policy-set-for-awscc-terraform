@@ -113,18 +113,18 @@ resource_changes = {
 configuration = {
 	"provider_config": {
 		"awscc": {
-			"name":              "awscc",
-			"full_name":         "registry.terraform.io/hashicorp/awscc",
+			"name":               "awscc",
+			"full_name":          "registry.terraform.io/hashicorp/awscc",
 			"version_constraint": "~> 0.1",
 		},
 	},
 	"root_module": {
 		"resources": [
 			{
-				"address": "awscc_ec2_volume.ebs_unencrypted",
-				"mode":    "managed",
-				"type":    "awscc_ec2_volume",
-				"name":    "ebs_unencrypted",
+				"address":             "awscc_ec2_volume.ebs_unencrypted",
+				"mode":                "managed",
+				"type":                "awscc_ec2_volume",
+				"name":                "ebs_unencrypted",
 				"provider_config_key": "awscc",
 				"expressions": {
 					"availability_zone": {
@@ -148,10 +148,10 @@ configuration = {
 				"schema_version": 0,
 			},
 			{
-				"address": "awscc_ec2_volume.ebs_no_encryption",
-				"mode":    "managed",
-				"type":    "awscc_ec2_volume",
-				"name":    "ebs_no_encryption",
+				"address":             "awscc_ec2_volume.ebs_no_encryption",
+				"mode":                "managed",
+				"type":                "awscc_ec2_volume",
+				"name":                "ebs_no_encryption",
 				"provider_config_key": "awscc",
 				"expressions": {
 					"availability_zone": {
